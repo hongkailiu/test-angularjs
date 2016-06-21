@@ -45,11 +45,22 @@
 
   <script>
   var app = angular.module('myApp', []);
-  app.controller('tableCtrl', function($scope, $http) {
-      $http.get("http://jsonplaceholder.typicode.com/posts")
-      .then(function (response) {
-        $scope.posts = response.data;
-      });
+
+  // ref http://www.benlesh.com/2013/02/angularjs-creating-service-with-http.html
+  app.factory('myService', function($http) {
+   return {
+     getData: function(url) {
+       return $http.get(url).then(function(result) {
+           return result.data;
+         });
+       }
+     }
+   });
+
+  app.controller('tableCtrl', function($scope, myService) {
+    myService.getData("http://jsonplaceholder.typicode.com/posts").then(function(data) {
+      $scope.posts = data;
+    });
   });
   </script>
 
