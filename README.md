@@ -6,6 +6,7 @@ mvc for frontend
 - view: dom elements
 - controller: java script
 
+
 1. REST data pull
   $http to get a public rest service
 2. Model data binding 
