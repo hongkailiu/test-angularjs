@@ -1,68 +1,50 @@
 <!DOCTYPE html>
-<html lang="en-US">
-<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<body ng-app="myApp">
 
-  <div ng-controller="tableCtrl">
+<!-- define angular app -->
+<html ng-app="scotchApp">
 
-    <div class="row">
-        <div class="col-sm-2"></div>
-        <div class="col-sm-10">
-          <h2>Learn Angular.js</h2>
-        </div>
-    </div>
+<head>
+  <!-- SCROLLS -->
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
 
-    <div class="row">
-        <div class="col-sm-2"></div>
-        <div class="col-sm-2">
-          <p>Name : <input type="text" ng-model="name"></p>
-          <h2>Hello {{name}}</h2>
-        </div>
-    </div>
+  <!-- SPELLS -->
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
+  <script src="script.js"></script>
+</head>
 
-    <div class="row">
-        <div class="col-sm-2"></div>
-        <div class="col-sm-2"><h2> test: <a href="http://jsonplaceholder.typicode.com/posts">$http.get("http://jsonplaceholder.typicode.com/posts") </a></h2></div>
+<!-- define angular controller -->
+<body ng-controller="mainController">
+
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/">Angular Routing Example</a>
+      </div>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+        <li><a href="#about"><i class="fa fa-shield"></i> About</a></li>
+        <li><a href="#contact"><i class="fa fa-comment"></i> Contact</a></li>
+      </ul>
     </div>
-    <div class="row">
-        <div class="col-sm-2"></div>
-        <div class="col-sm-6">
-            <table  class="table" ng-controller="tableCtrl">
-              <thead>
-                <tr><th>Id</th><th>Title</th><th>Content</th></tr>
-              </thead>
-              <tbody>
-                <tr ng-repeat="post in posts">
-                    <td>{{post.id}}</td><td>{{post.title}}</td><td>{{post.body}}</td>
-                </tr>
-              </tbody>
-            </table>
-        </div>
-    </div>
+  </nav>
+
+  <div id="main">
+
+    <!-- angular templating -->
+		<!-- this is where content will be injected -->
+    <div ng-view></div>
 
   </div>
 
-  <script>
-  var app = angular.module('myApp', []);
+  <footer class="text-center">
+    <p>View the tutorial on <a href="http://scotch.io/tutorials/javascript/single-page-apps-with-angularjs-routing-and-templating">Scotch.io</a></p>
 
-  // ref http://www.benlesh.com/2013/02/angularjs-creating-service-with-http.html
-  app.factory('myService', function($http) {
-   return {
-     getData: function(url) {
-       return $http.get(url).then(function(result) {
-           return result.data;
-         });
-       }
-     }
-   });
-
-  app.controller('tableCtrl', function($scope, myService) {
-    myService.getData("http://jsonplaceholder.typicode.com/posts").then(function(data) {
-      $scope.posts = data;
-    });
-  });
-  </script>
+    <p>View a tutorial on <a href="http://scotch.io/tutorials/javascript/animating-angularjs-apps-ngview">Animating Your Angular Single Page App</a></p>
+  </footer>
 
 </body>
+
 </html>
